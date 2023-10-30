@@ -26,6 +26,12 @@ public class Zoo {
         } else {
             System.out.println("Impossible de supprimer le lion du zoo.");
         }
+        try {
+            myZoo.addAnimal(lion);
+            System.out.println("Lion ajouté avec succès au zoo.");
+        } catch (ZooFullException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
     public void displayZoo() {
@@ -39,19 +45,16 @@ public class Zoo {
         return "Zoo Name: " + name + "\nCity: " + city + "\nNumber of Cages: " + MAX_CAGES;
     }
 
-    public boolean addAnimal(Animal animal) {
-        if (isZooFull()) {
-            return false;
+    public void addAnimal(Animal animal) throws ZooFullException, InvalidAgeException {
+        if (animal.getAge() < 0) {
+            throw new InvalidAgeException();
         }
-        int index = searchAnimal(animal);
-        if (index == -1) {
-            if (numberOfAnimals < animals.length) {
-                animals[numberOfAnimals] = animal;
-                numberOfAnimals++;
-                return true;
-            }
+        if (numberOfAnimals < 3) {
+            animals[numberOfAnimals] = animal;
+            numberOfAnimals++;
+        } else {
+            throw new ZooFullException();
         }
-        return false;
     }
 
     public int searchAnimal(Animal animal) {
