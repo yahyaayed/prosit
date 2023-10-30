@@ -23,10 +23,30 @@ public class Aquatic {
     public String toString() {
         return "Habitat: " + habitat;
     }
-    public void swim() {
+    public abstract void swim();
         System.out.println("This aquatic animal is swimming.");
     }
-
+    public void addAquaticAnimal(Aquatic aquatic) {
+        if (numberOfAquaticAnimals < 10) {
+            aquaticAnimals[numberOfAquaticAnimals] = aquatic;
+            numberOfAquaticAnimals++;
+        } else {
+            System.out.println("Le tableau d'animaux aquatiques est plein.");
+        }
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Aquatic other = (Aquatic) obj;
+        return this.getName().equals(other.getName())
+                 this.getAge() == other.getAge()
+                 this.getHabitat().equals(other.getHabitat());
+    }
 
     public static void main(String[] args) {
         Aquatic aquaticAnimal = new Aquatic("Ocean");

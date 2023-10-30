@@ -5,13 +5,43 @@ public class Zoo {
     private final String name;
     private final String city;
     private int numberOfAnimals;
+    private Aquatic[] aquaticAnimals;
+    private int numberOfAquaticAnimals;
 
     public Zoo(String name, String city, int initialCapacity) {
         this.name = name;
         this.city = city;
         this.animals = new Animal[initialCapacity];
         this.numberOfAnimals = 0;
+        aquaticAnimals = new Aquatic[10];
+        numberOfAquaticAnimals = 0;
     }
+    public float maxPenguinSwimmingDepth() {
+        float maxDepth = 0.0f;
+        for (int i = 0; i < numberOfAquaticAnimals; i++) {
+            if (aquaticAnimals[i] instanceof Penguin) {
+                Penguin penguin = (Penguin) aquaticAnimals[i];
+                if (penguin.getSwimmingDepth() > maxDepth) {
+                    maxDepth = penguin.getSwimmingDepth();
+                }
+            }
+        }
+        return maxDepth;
+    }
+    public void displayNumberOfAquaticsByType() {
+        int dolphinCount = 0;
+        int penguinCount = 0;
+        for (int i = 0; i < numberOfAquaticAnimals; i++) {
+            if (aquaticAnimals[i] instanceof Dolphin) {
+                dolphinCount++;
+            } else if (aquaticAnimals[i] instanceof Penguin) {
+                penguinCount++;
+            }
+        }
+        System.out.println("Number of Dolphins: " + dolphinCount);
+        System.out.println("Number of Penguins: " + penguinCount);
+    }
+
     public static void main(String[] args) {
         Zoo myZoo = new Zoo("My Zoo", "Cityville", 25);
 
@@ -27,6 +57,11 @@ public class Zoo {
             System.out.println("Impossible de supprimer le lion du zoo.");
         }
 
+    }
+    public void makeAquaticAnimalsSwim() {
+        for (int i = 0; i < numberOfAquaticAnimals; i++) {
+            aquaticAnimals[i].swim();
+        }
     }
     public void displayZoo() {
         System.out.println("Zoo Name: " + name);
