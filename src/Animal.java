@@ -1,6 +1,6 @@
 public class Animal {
-    String family;
-    String name;
+   private  String family;
+   private  String name;
     int age;
     boolean isMammal;
 
@@ -8,9 +8,15 @@ public class Animal {
     public Animal(String family, String name, int age, boolean isMammal) {
         this.family = family;
         this.name = name;
-        this.age = age;
+
+        if (age < 0) {
+            this.age = 0;
+        } else {
+            this.age = age;
+        }
         this.isMammal = isMammal;
     }
+
     public static void main(String[] args) {
         Zoo myZoo = new Zoo("My Zoo", "Cityville", 25);
 

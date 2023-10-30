@@ -1,3 +1,4 @@
+package tn.esprit.gestionzoo.entities;
 public class Zoo {
     private static final int MAX_CAGES = 25;
     private final Animal[] animals;
@@ -39,13 +40,18 @@ public class Zoo {
     }
 
     public boolean addAnimal(Animal animal) {
-        if (numberOfAnimals < MAX_CAGES) {
-            animals[numberOfAnimals] = animal;
-            numberOfAnimals++;
-            return true;
-        } else {
+        if (isZooFull()) {
             return false;
         }
+        int index = searchAnimal(animal);
+        if (index == -1) {
+            if (numberOfAnimals < animals.length) {
+                animals[numberOfAnimals] = animal;
+                numberOfAnimals++;
+                return true;
+            }
+        }
+        return false;
     }
 
     public int searchAnimal(Animal animal) {
