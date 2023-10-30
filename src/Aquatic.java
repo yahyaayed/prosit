@@ -1,4 +1,4 @@
-public class Aquatic {
+public class Aquatic implements Carnivore<Food> {
     private String habitat;
 
     public Aquatic() {
@@ -26,16 +26,15 @@ public class Aquatic {
     public void swim() {
         System.out.println("This aquatic animal is swimming.");
     }
-
-
-    public static void main(String[] args) {
-        Aquatic aquaticAnimal = new Aquatic("Ocean");
-        Dolphin dolphin = new Dolphin("Ocean", 20.0f);
-        Penguin penguin = new Penguin("Antarctica", 10.0f);
-
-        System.out.println("Aquatic Animal:\n" + aquaticAnimal);
-        System.out.println("\nDolphin:\n" + dolphin);
-        System.out.println("\nPenguin:\n" + penguin);
+    @Override
+    public void eatMeat(Food meat) {
+        if (meat == Food.MEAT || meat == Food.BOTH) {
+            System.out.println("Aquatic animal is eating meat.");
+        } else {
+            System.out.println("Aquatic animal cannot eat plant.");
+        }
     }
+}
+
 
 }

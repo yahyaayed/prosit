@@ -12,28 +12,8 @@ public class Zoo {
         this.animals = new Animal[initialCapacity];
         this.numberOfAnimals = 0;
     }
-    public static void main(String[] args) {
-        Zoo myZoo = new Zoo("My Zoo", "Cityville", 25);
 
-        // Affichez les informations du zoo en utilisant la méthode displayZoo()
-        myZoo.displayZoo();
-        myZoo.displayAnimals();
-        Animal lion = new Animal("Felidae", "Lion", 5, true);
-        myZoo.addAnimal(lion);
 
-        if (myZoo.removeAnimal(lion)) {
-            System.out.println("Lion supprimé avec succès du zoo.");
-        } else {
-            System.out.println("Impossible de supprimer le lion du zoo.");
-        }
-        try {
-            myZoo.addAnimal(lion);
-            System.out.println("Lion ajouté avec succès au zoo.");
-        } catch (ZooFullException e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
     public void displayZoo() {
         System.out.println("Zoo Name: " + name);
         System.out.println("City: " + city);
